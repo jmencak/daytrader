@@ -33,8 +33,8 @@
     <description>Java EE 6.0 Performance Benchmark Sample Application</description>
 
     <scm>
-        <connection>scm:git:https://github.com/meetdestiny/daytrader.git</connection>
-        <developerConnection>scm:git:https://github.com/meetdestiny/daytrader.git</developerConnection>
+        <connection>scm:git:git@github.com:meetdestiny/daytrader.git</connection>
+        <developerConnection>scm:git:git@github.com:meetdestiny/daytrader.git</developerConnection>
         <url>https://github.com/meetdestiny/daytrader.git</url>
     </scm>
 <distributionManagement>
