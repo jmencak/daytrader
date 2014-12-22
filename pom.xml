@@ -33,11 +33,25 @@
     <description>Java EE 6.0 Performance Benchmark Sample Application</description>
 
     <scm>
-        <connection>scm:svn:http://svn.apache.org/repos/asf/geronimo/daytrader/tags/daytrader-parent-3.0.0</connection>
-        <developerConnection>scm:svn:https://svn.apache.org/repos/asf/geronimo/daytrader/tags/daytrader-parent-3.0.0</developerConnection>
-        <url>http://svn.apache.org/viewcvs.cgi/geronimo/daytrader/tags/daytrader-parent-3.0.0</url>
+        <connection>scm:git:https://github.com/meetdestiny/daytrader.git</connection>
+        <developerConnection>scm:git:https://github.com/meetdestiny/daytrader.git</developerConnection>
+        <url>https://github.com/meetdestiny/daytrader.git</url>
     </scm>
+<distributionManagement>
+		<!-- Release repository for pangaea -->
+		<repository>
+			<id>gorilla_releases</id>
+			<url>http://playwithgorilla.com:8081/nexus/content/repositories/releases/</url>
+			<uniqueVersion>true</uniqueVersion>
+		</repository>
 
+		<!-- Snapshot repository for pangaea -->
+		<snapshotRepository>
+			<id>gorilla_snapshots</id>
+			<url>http://playwithgorilla.com:8081/nexus/content/repositories/snapshots/</url>
+			<uniqueVersion>false</uniqueVersion>
+		</snapshotRepository>
+	</distributionManagement>
     <properties>        
         <geronimoVersion>3.0.0</geronimoVersion>
         <!-- set siteId to artifactId for any "top level" project rooting a website -->
