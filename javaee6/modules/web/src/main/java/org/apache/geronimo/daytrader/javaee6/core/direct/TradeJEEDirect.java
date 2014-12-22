@@ -1402,6 +1402,61 @@ public class TradeJEEDirect implements TradeServices, TradeDBServices {
          * setLastLogin( new Timestamp(System.currentTimeMillis()) ); setLoginCount( getLoginCount() + 1 );
          */
     }
+    
+    /**
+     * @see TradeServices#login(String)
+     */
+
+    public AccountDataBean login(String userID) throws Exception {
+
+        AccountDataBean accountData = null;
+        Connection conn = null;
+        try {
+            if (Log.doTrace())
+                Log.trace("TradeDirect:SSO login - inSession(" + this.inSession + ")", userID);
+
+            conn = getConn();
+            PreparedStatement stmt = getStatement(conn, getAccountProfileSQL);
+            stmt.setString(1, userID);
+
+            ResultSet rs = stmt.executeQuery();
+            if (!rs.next()) {
+                Log.error("TradeDirect:SSO login -- failure to find account for" + userID);
+                throw new javax.ejb.FinderException("Cannot find account for" + userID);
+            }
+
+
+            stmt.close();
+
+            stmt = getStatement(conn, loginSQL);
+            stmt.setTimestamp(1, new Timestamp(System.currentTimeMillis()));
+            stmt.setString(2, userID);
+
+            int rows = stmt.executeUpdate();
+            // ?assert rows==1?
+            stmt.close();
+
+            stmt = getStatement(conn, getAccountForUserSQL);
+            stmt.setString(1, userID);
+            rs = stmt.executeQuery();
+
+            accountData = getAccountDataFromResultSet(rs);
+
+            stmt.close();
+
+            commit(conn);
+        } catch (Exception e) {
+            Log.error("TradeDirect:login -- error logging in user", e);
+            rollBack(conn, e);
+        } finally {
+            releaseConn(conn);
+        }
+        return accountData;
+
+        /*
+         * setLastLogin( new Timestamp(System.currentTimeMillis()) ); setLoginCount( getLoginCount() + 1 );
+         */
+    }
 
     /**
      * @see TradeServices#logout(String)

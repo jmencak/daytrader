@@ -335,9 +335,9 @@
 
     <profiles>
         <profile>
-            <id>default</id>
+            <id>db2-notdefault</id>
             <activation>
-                <activeByDefault>true</activeByDefault>
+                <activeByDefault>false</activeByDefault>
             </activation>
             <properties>
                 <jboss.mapping>DB2</jboss.mapping>
@@ -394,8 +394,12 @@
         </profile>
         <profile>
             <id>mysql</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>        
+            </activation>
             <modules>
-                <module>plugins/daytrader-mysql-datasource</module>
+               <module>javaee6</module>  
+               <module>plugins</module> 
             </modules>
         </profile>
         <profile>

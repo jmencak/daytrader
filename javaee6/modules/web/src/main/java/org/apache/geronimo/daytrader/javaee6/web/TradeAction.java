@@ -518,6 +518,22 @@ public class TradeAction implements TradeServices {
         accountData = trade.login(userID, password);
         return accountData;
     }
+    
+    
+    /**
+     * Attempt to authenticate and login a user with SSO
+     *
+     * @param userID   the customer to login
+     * @param password the password entered by the customer for authentication
+     * @return User account data in AccountDataBean
+     */
+    public AccountDataBean login(String userID) throws Exception {
+        if (Log.doActionTrace())
+            Log.trace("TradeAction:SSO login", userID);
+        AccountDataBean accountData;
+        accountData = trade.login(userID);
+        return accountData;
+    }
 
     /**
      * Logout the given user

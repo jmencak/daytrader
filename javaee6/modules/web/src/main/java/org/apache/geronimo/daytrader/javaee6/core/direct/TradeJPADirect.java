@@ -846,6 +846,36 @@ public class TradeJPADirect implements TradeServices, TradeDBServices {
         entityManager.close();
         return account;
     }
+    
+    
+    public AccountDataBean login(String userID)
+    throws Exception {
+
+        EntityManager entityManager = emf.createEntityManager();
+
+        AccountProfileDataBean profile = entityManager.find(AccountProfileDataBean.class, userID);
+
+        if (profile == null) {
+            throw new RuntimeException("No such user: " + userID);
+        }
+        /*
+         * Managed Transaction
+         */
+        entityManager.getTransaction().begin();
+        entityManager.merge(profile);
+
+        AccountDataBean account = profile.getAccount();
+
+        if (Log.doTrace())
+            Log.trace("TradeJPADirect:SSO login", userID);
+
+        account.login();
+        entityManager.getTransaction().commit();
+        if (Log.doTrace())
+            Log.trace("TradeJPADirect:SSO login(" + userID + ") success" + account);
+        entityManager.close();
+        return account;
+    }
 
     public void logout(String userID) {
         if (Log.doTrace())

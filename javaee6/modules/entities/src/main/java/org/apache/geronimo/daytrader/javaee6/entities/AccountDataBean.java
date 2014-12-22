@@ -299,6 +299,20 @@ public class AccountDataBean implements Serializable {
         setLastLogin(new Timestamp(System.currentTimeMillis()));
         setLoginCount(getLoginCount() + 1);
     }
+    
+    public void login() {
+        AccountProfileDataBean profile = getProfile();
+        if ((profile == null) ) {
+            String error = "AccountBean:Login failure for account: " + getAccountID() +
+                    ((profile == null) ? "null AccountProfile" : "" );
+            throw new RuntimeException(error);
+            
+        }
+
+        setLastLogin(new Timestamp(System.currentTimeMillis()));
+        setLoginCount(getLoginCount() + 1);
+    }
+    
 
     public void logout() {
         setLogoutCount(getLogoutCount() + 1);

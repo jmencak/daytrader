@@ -15,16 +15,15 @@
     See the License for the specific language governing permissions and
     limitations under the License.
 -->
-<application xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/application_6.xsd" version="6">
+<application xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/application_6.xsd" version="6">
   <application-name>daytrader</application-name>
-  <description>DayTrader Stock Trading Performance Benchmark Sample</description>  
-  <display-name>DayTrader EAR</display-name> 
-  
+  <description>DayTrader Stock Trading Performance Benchmark Sample</description>
+  <display-name>DayTrader EAR</display-name>
   <module>
     <web>
       <web-uri>web.war</web-uri>
       <context-root>/daytrader</context-root>
     </web>
   </module>
- 
+  <library-directory>lib</library-directory>
 </application>

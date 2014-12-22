@@ -121,7 +121,7 @@
                     <commonInstance>
                         <plugin-artifact>
                             <geronimo-version>${geronimoVersion}</geronimo-version>
-                            <jvm-version>1.5</jvm-version>
+                            <jvm-version>1.6</jvm-version>
                             <jvm-version>1.6</jvm-version>
                             <source-repository>~/.m2/repository/</source-repository>
                             <source-repository>http://repository.apache.org/snapshots/</source-repository>
@@ -161,8 +161,8 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>1.5</source>
-                    <target>1.5</target>
+                    <source>1.6</source>
+                    <target>1.6</target>
                 </configuration>
             </plugin>
 
@@ -170,7 +170,7 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-idea-plugin</artifactId>
                 <configuration>
-                    <jdkName>1.5</jdkName>
+                    <jdkName>1.6</jdkName>
                     <linkModules>true</linkModules>
                 </configuration>
             </plugin>

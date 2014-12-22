@@ -565,6 +565,24 @@ public class TradeSLSBBean implements TradeSLSBRemote, TradeSLSBLocal {
 
         return account;
     }
+    
+    public AccountDataBean login(String userID) throws RollbackException {
+        AccountProfileDataBean profile = entityManager.find(AccountProfileDataBean.class, userID);
+
+        if (profile == null) {
+            throw new EJBException("No such user: " + userID);
+        }
+        entityManager.merge(profile);
+        AccountDataBean account = profile.getAccount();
+
+        if (Log.doTrace())
+            Log.trace("TradeSLSBBean:SSO login", userID);
+        account.login();
+        if (Log.doTrace())
+            Log.trace("TradeSLSBBean:login(" + userID + "SSO success" + account);
+
+        return account;
+    }
 
     public void logout(String userID) {
         if (Log.doTrace())

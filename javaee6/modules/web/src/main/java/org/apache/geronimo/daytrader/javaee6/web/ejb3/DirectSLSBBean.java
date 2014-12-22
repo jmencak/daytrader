@@ -112,6 +112,10 @@ public class DirectSLSBBean implements DirectSLSBRemote, DirectSLSBLocal {
     public AccountDataBean login(String userID, String password) throws Exception {
         return (new TradeJEEDirect(true)).login(userID, password);
     }
+    
+    public AccountDataBean login(String userID) throws Exception {
+        return (new TradeJEEDirect(true)).login(userID);
+    }
 
     public void logout(String userID) throws Exception {
         (new TradeJEEDirect(true)).logout(userID);
