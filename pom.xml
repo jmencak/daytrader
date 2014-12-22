@@ -17,16 +17,16 @@
 --><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
-
+<!--
     <parent>
         <groupId>org.apache.geronimo.genesis</groupId>
         <artifactId>genesis-java6-flava</artifactId>
         <version>2.0</version>
     </parent>
-
+-->
     <groupId>org.apache.geronimo.daytrader</groupId>
     <artifactId>daytrader-parent</artifactId>
-    <version>3.0.0-SNAPSHOT</version>
+    <version>3.0.0</version>
     <packaging>pom</packaging>
     
     <name>DayTrader :: Performance Benchmark Sample :: Java EE 6</name>    
@@ -309,6 +309,11 @@
                     <configuration>
                         <category>Daytrader :: Java EE 6</category>
                     </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-release-plugin</artifactId>
+                    <version>2.1</version>
                 </plugin>
                 
             </plugins>
