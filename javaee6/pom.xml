@@ -20,7 +20,7 @@
   <parent>
     <artifactId>daytrader-parent</artifactId>
     <groupId>org.apache.geronimo.daytrader</groupId>
-    <version>3.0.10</version>
+    <version>3.0.11-SNAPSHOT</version>
   </parent>
  
   <artifactId>javaee6</artifactId>
