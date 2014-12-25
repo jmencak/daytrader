@@ -174,7 +174,7 @@ public class TradeAppServlet extends HttpServlet {
 			String state = req.getParameter("state");
 			String foros = "code="+code +
 					"&client_id=" +CLIENT_ID + 
-					"&client_secret=" +CLIENT_SECRET + "&grant_type=authorization_code&redirect_uri=http://localhost:8080/daytrader/app?action=registerproxy";
+					"&client_secret=" +CLIENT_SECRET + "&grant_type=authorization_code&redirect_uri=http://ec2-54-167-178-47.compute-1.amazonaws.com:8080/daytrader/app?action=registerproxy";
 			
 			String url = "https://accounts.google.com/o/oauth2/token";
 			System.out.println("Url:" + url);
