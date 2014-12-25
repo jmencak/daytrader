@@ -190,7 +190,7 @@ public class TradeAppServlet extends HttpServlet {
 			httppost.addParameter("code", code);
 			httppost.addParameter("client_id", CLIENT_ID);
 			httppost.addParameter("client_secret", CLIENT_SECRET);
-			httppost.addParameter("redirect_uri","http://localhost:8080/daytrader/app?action=registerproxy" );		
+			httppost.addParameter("redirect_uri","http://ec2-54-167-178-47.compute-1.amazonaws.com:8080/daytrader/app?action=registerproxy" );		
 			
 	       // httppost.setRequestBody(foros);
 	       // httppost.setEntity(entity);
