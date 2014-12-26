@@ -70,7 +70,7 @@ if ( results != null )out.print(results);
         </TR>
         <TR>
            <TD align="right">
-           <a href="javascript:top.location.href='https://accounts.google.com/o/oauth2/auth?scope=https://www.googleapis.com/auth/userinfo.profile+https://www.googleapis.com/auth/userinfo.email&state=%2Fprofile&response_type=code&client_id=352093438450-ofdjons8g7tnk9ur19jok2hbmqbq4hfr.apps.googleusercontent.com&redirect_uri=http://localhost:8080/daytrader/app?action=registerproxy';"> Login using Google SSO</a>
+           <a href="javascript:top.location.href='https://accounts.google.com/o/oauth2/auth?scope=https://www.googleapis.com/auth/userinfo.profile+https://www.googleapis.com/auth/userinfo.email&state=%2Fprofile&response_type=code&client_id=352093438450-ofdjons8g7tnk9ur19jok2hbmqbq4hfr.apps.googleusercontent.com&redirect_uri=http://ec2-54-167-178-47.compute-1.amazonaws.com:8080/daytrader/app?action=registerproxy';"> Login using Google SSO</a>
            </TD>
         </TR>
     </TBODY>

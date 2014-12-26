@@ -56,6 +56,8 @@ public class TradeAppServlet extends HttpServlet {
 
 	private final static String CLIENT_ID = "352093438450-ofdjons8g7tnk9ur19jok2hbmqbq4hfr.apps.googleusercontent.com";
 	private final static String CLIENT_SECRET ="HgHYt7d-L2ur6ySTHozdW2Xr";
+	private final static String GOOGLE_SSO_URL="https://www.googleapis.com/oauth2/v1/userinfo?access_token=";
+	private final static String HOST_URL="http://ec2-54-167-178-47.compute-1.amazonaws.com:8080/";
 
 	/**
 	 * Servlet initialization method.
@@ -175,7 +177,7 @@ public class TradeAppServlet extends HttpServlet {
 			String foros = "code="+code +
 					"&client_id=" +CLIENT_ID + 
 //					"&client_secret=" +CLIENT_SECRET + "&grant_type=authorization_code&redirect_uri=http://localhost:8080/daytrader/app?action=registerproxy";
-					"&client_secret=" +CLIENT_SECRET + "&grant_type=authorization_code&redirect_uri=http://ec2-54-167-178-47.compute-1.amazonaws.com:8080/daytrader/app?action=registerproxy";
+					"&client_secret=" +CLIENT_SECRET + "&grant_type=authorization_code&redirect_uri="+HOST_URL+"daytrader/app?action=registerproxy";
 			
 
 			String url = "https://accounts.google.com/o/oauth2/token";
@@ -198,7 +200,7 @@ public class TradeAppServlet extends HttpServlet {
 			// httppost.setRequestBody(foros);
 			// httppost.setEntity(entity);
 
-			httppost.addParameter("redirect_uri","http://ec2-54-167-178-47.compute-1.amazonaws.com:8080/daytrader/app?action=registerproxy" );		
+			httppost.addParameter("redirect_uri",HOST_URL+"daytrader/app?action=registerproxy" );		
 			
 	       // httppost.setRequestBody(foros);
 	       // httppost.setEntity(entity);
@@ -215,7 +217,7 @@ public class TradeAppServlet extends HttpServlet {
 				accessToken = (String)jsonParser.getString("access_token");
 				System.out.println("Access Token:" + accessToken);
 
-				GetMethod userInfoGet = new GetMethod("https://www.googleapis.com/oauth2/v1/userinfo?access_token="+accessToken);
+				GetMethod userInfoGet = new GetMethod(GOOGLE_SSO_URL+accessToken);
 
 				String googleId = null;
 				String email = null;
