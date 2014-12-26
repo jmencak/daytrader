@@ -48,7 +48,7 @@ if ( results != null )out.print(results);
 <TABLE width="616">
     <TBODY>
         <TR>
-            <TD width="2%" bgcolor="#e7e4e7" rowspan="3"></TD>
+            <TD width="2%" bgcolor="#e7e4e7" rowspan="4"></TD>
             <TD width="98%"><B>Log in</B>
             <HR>
             </TD>
