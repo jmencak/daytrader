@@ -53,10 +53,10 @@ public class TradeAppServlet extends HttpServlet {
 
 	/*private final static String CLIENT_ID = "352093438450-1ljnv0344ghiilr3j9hubl496jecdgde.apps.googleusercontent.com";
 	private final static String CLIENT_SECRET ="8eqSmpK72T4azYaWQhxcmZgD";  */
-	
+
 	private final static String CLIENT_ID = "352093438450-ofdjons8g7tnk9ur19jok2hbmqbq4hfr.apps.googleusercontent.com";
 	private final static String CLIENT_SECRET ="HgHYt7d-L2ur6ySTHozdW2Xr";
-	
+
 	/**
 	 * Servlet initialization method.
 	 */
@@ -175,15 +175,15 @@ public class TradeAppServlet extends HttpServlet {
 			String foros = "code="+code +
 					"&client_id=" +CLIENT_ID + 
 					"&client_secret=" +CLIENT_SECRET + "&grant_type=authorization_code&redirect_uri=http://localhost:8080/daytrader/app?action=registerproxy";
-			
+
 			String url = "https://accounts.google.com/o/oauth2/token";
 			System.out.println("Url:" + url);
 			HttpClient client = new HttpClient();
 			PostMethod httppost = new PostMethod(url);
 			//httppost
 			httppost.addRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-			
-	        //ByteArrayRequestEntity entity = new ByteArrayRequestEntity(foros.getBytes("UTF-8"));
+
+			//ByteArrayRequestEntity entity = new ByteArrayRequestEntity(foros.getBytes("UTF-8"));
 			//httppost.set
 			System.out.println("Foros :" + foros);
 			httppost.addParameter("grant_type", "authorization_code");
@@ -191,50 +191,58 @@ public class TradeAppServlet extends HttpServlet {
 			httppost.addParameter("client_id", CLIENT_ID);
 			httppost.addParameter("client_secret", CLIENT_SECRET);
 			httppost.addParameter("redirect_uri","http://localhost:8080/daytrader/app?action=registerproxy" );		
-			
-	       // httppost.setRequestBody(foros);
-	       // httppost.setEntity(entity);
+
+			// httppost.setRequestBody(foros);
+			// httppost.setEntity(entity);
 
 			String accessToken = null;
 			try {
-			   // client.set
-				
+				// client.set
+
 				int responseCode =  client.executeMethod(httppost);
 				String jsonResponse = httppost.getResponseBodyAsString();
-				
+
 				System.out.println("jsonResponse:" + jsonResponse);
 				JSONObject jsonParser = new JSONObject(jsonResponse);
 				accessToken = (String)jsonParser.getString("access_token");
 				System.out.println("Access Token:" + accessToken);
-				
+
 				GetMethod userInfoGet = new GetMethod("https://www.googleapis.com/oauth2/v1/userinfo?access_token="+accessToken);
 
-			    String googleId = null;
-			    String email = null;
-			    String name = null;
-			    String firstName = null;
-			    String lastName = null;
-			    try {
-			        responseCode = client.executeMethod(userInfoGet);
-			        String userInfo =userInfoGet.getResponseBodyAsString();
-			        
-			        JSONObject userInfoParser = new JSONObject(userInfo);
-			        
-			        googleId = (String) userInfoParser.getString("id");
-			        email = (String) userInfoParser.getString("email");
-			        name = (String) userInfoParser.getString("name");
-			        firstName = (String) userInfoParser.getString("given_name");
-			        lastName = (String) userInfoParser.getString("family_name");
-			       //tsAction.
-			        tsAction.doRegister(ctx, req, resp, email, "password", "password",
-			        		firstName + " " + lastName,  "CCN", "500", email, "Please update Address");
-			        
-			        req.getRequestDispatcher("/app?action=login&uid="+email+"&passwd=password").forward(req, resp); 
-			        
-			    } catch (IOException e) {
-			        throw new RuntimeException(e);
-			    } 
-				
+				String googleId = null;
+				String email = null;
+				String name = null;
+				String firstName = null;
+				String lastName = null;
+				try {
+					responseCode = client.executeMethod(userInfoGet);
+					String userInfo =userInfoGet.getResponseBodyAsString();
+
+					JSONObject userInfoParser = new JSONObject(userInfo);
+
+					googleId = (String) userInfoParser.getString("id");
+					email = (String) userInfoParser.getString("email");
+					name = (String) userInfoParser.getString("name");
+					firstName = (String) userInfoParser.getString("given_name");
+					lastName = (String) userInfoParser.getString("family_name");
+					userID = email;
+					try {//tsAction.
+						String results = "";
+						tsAction.doCheck(ctx, req, resp, userID,results );
+						if (results.equals("FOUND"))
+							tsAction.doLogin(ctx, req, resp, userID);
+						else 
+							tsAction.doRegister(ctx, req, resp, email, "password", "password",
+								firstName + " " + lastName,  "CCN", "500", email, "Please update Address");
+					} catch (Exception ex) {
+						//tsAction.doLogin(ctx, req, resp, userID, passwd);
+					}
+					req.getRequestDispatcher("/app?action=login&uid="+email+"&passwd=password").forward(req, resp); 
+
+				} catch (IOException e) {
+					throw new RuntimeException(e);
+				} 
+
 
 			} catch (Exception e) {
 				throw new RuntimeException(e);
