@@ -239,15 +239,17 @@ public class TradeAppServlet extends HttpServlet {
 					try {//tsAction.
 						String results = "";
 						tsAction.doCheck(ctx, req, resp, userID,results );
+						Log.log("Looking for request status"+ results);
 						if (results.equals("FOUND"))
 							tsAction.doLogin(ctx, req, resp, userID);
 						else 
 							tsAction.doRegister(ctx, req, resp, email, "password", "password",
 								firstName + " " + lastName,  "CCN", "500", email, "Please update Address");
+							req.getRequestDispatcher("/app?action=login&uid="+email+"&passwd=password").forward(req, resp); 
 					} catch (Exception ex) {
 						//tsAction.doLogin(ctx, req, resp, userID, passwd);
 					}
-					req.getRequestDispatcher("/app?action=login&uid="+email+"&passwd=password").forward(req, resp); 
+					
 
 				} catch (IOException e) {
 					throw new RuntimeException(e);
