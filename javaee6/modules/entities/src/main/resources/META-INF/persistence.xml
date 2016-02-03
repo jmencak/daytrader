@@ -18,9 +18,9 @@
 <persistence xmlns="http://java.sun.com/xml/ns/persistence" version="1.0">
 
     <persistence-unit transaction-type="JTA" name="daytrader">
-        <provider>org.apache.openjpa.persistence.PersistenceProviderImpl</provider>
-        <jta-data-source>jdbc/TradeDataSource</jta-data-source>  
-        <non-jta-data-source>jdbc/NoTxTradeDataSource</non-jta-data-source> 
+<!--         <provider>org.apache.openjpa.persistence.PersistenceProviderImpl</provider> -->
+        <jta-data-source>java:jboss/datasources/TradeDataSource</jta-data-source>  
+        <non-jta-data-source>java:jboss/datasources/NoTxTradeDataSource</non-jta-data-source> 
         
         <class>org.apache.geronimo.daytrader.javaee6.entities.AccountDataBean</class>
         <class>org.apache.geronimo.daytrader.javaee6.entities.AccountProfileDataBean</class>
@@ -30,12 +30,12 @@
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
         
         <properties>
-            <property name="openjpa.jdbc.DBDictionary" value="derby" /> 
-            <property name="openjpa.BrokerImpl" value="non-finalizing" />
+<!--             <property name="openjpa.jdbc.DBDictionary" value="derby" />  -->
+<!--             <property name="openjpa.BrokerImpl" value="non-finalizing" /> -->
             <!-- To enable OpenJPA to generate foreign key constraints, comment out this line -->
             <!-- <property name="openjpa.jdbc.MappingDefaults" value="ForeignKeyDeleteAction=restrict,JoinForeignKeyDeleteAction=restrict"/> -->
-            <property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(ForeignKeys=true)"/>
-            <property name="openjpa.Sequence" value="table(Table=OPENJPASEQ, Increment=100)"/>
+<!--             <property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(ForeignKeys=true)"/> -->
+<!--             <property name="openjpa.Sequence" value="table(Table=OPENJPASEQ, Increment=100)"/> -->
 
             <!--
             <property name="openjpa.jdbc.DBDictionary" value="derby" />

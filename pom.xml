@@ -295,7 +295,6 @@
                     <type>war</type>                     
                     <scope>provided</scope>            
                 </dependency>              
-                
         </dependencies>        
     </dependencyManagement>
 
@@ -303,20 +302,10 @@
         <pluginManagement>
             <plugins>
                 <plugin>
-                    <groupId>org.apache.geronimo.buildsupport</groupId>
-                    <artifactId>car-maven-plugin</artifactId>
-                    <version>${geronimoVersion}</version>
-                    <extensions>true</extensions>
-                    <configuration>
-                        <category>Daytrader :: Java EE 6</category>
-                    </configuration>
-                </plugin>
-                <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-release-plugin</artifactId>
                     <version>2.5</version>
                 </plugin>
-                
             </plugins>
         </pluginManagement>
 
@@ -354,38 +343,36 @@
     </pluginRepositories>
 
     <profiles>
-        <profile>
-            <id>db2-notdefault</id>
-            <activation>
-                <activeByDefault>false</activeByDefault>
-            </activation>
-            <properties>
-                <jboss.mapping>DB2</jboss.mapping>
-            </properties>
-            <modules>
-                <!-- Daytrader Java EE 6 -->
-               <module>javaee6</module>  
-               <module>plugins</module> 
-            </modules>
-        </profile>
-        <profile>
-            <id>no-plugin</id>
-            <activation>
-                <activeByDefault>false</activeByDefault>        
-                <property>
-                    <name>buildPlugin</name>
-                    <value>false</value>
-                </property>        
-            </activation>
-            <properties>
-                <jboss.mapping>DB2</jboss.mapping>
-            </properties>
-            <modules>               
-                <!-- Daytrader Java EE 6 -->
-               <module>javaee6</module>
-               <module>plugins</module>                 
-            </modules>
-        </profile>             
+<!--         <profile> -->
+<!--             <id>db2-notdefault</id> -->
+<!--             <activation> -->
+<!--                 <activeByDefault>false</activeByDefault> -->
+<!--             </activation> -->
+<!--             <properties> -->
+<!--                 <jboss.mapping>DB2</jboss.mapping> -->
+<!--             </properties> -->
+<!--             <modules> -->
+<!--                <module>javaee6</module>   -->
+<!--                <module>plugins</module>  -->
+<!--             </modules> -->
+<!--         </profile> -->
+<!--         <profile> -->
+<!--             <id>no-plugin</id> -->
+<!--             <activation> -->
+<!--                 <activeByDefault>false</activeByDefault>         -->
+<!--                 <property> -->
+<!--                     <name>buildPlugin</name> -->
+<!--                     <value>false</value> -->
+<!--                 </property>         -->
+<!--             </activation> -->
+<!--             <properties> -->
+<!--                 <jboss.mapping>DB2</jboss.mapping> -->
+<!--             </properties> -->
+<!--             <modules>                -->
+<!--                <module>javaee6</module> -->
+<!--                <module>plugins</module>                  -->
+<!--             </modules> -->
+<!--         </profile>              -->
 
         <profile>
             <id>jboss-mysql</id>
@@ -400,18 +387,18 @@
             </properties>
         </profile>
         
-        <profile>
-            <id>db2</id>
-            <modules>
-                <module>plugins/daytrader-db2-datasource</module>
-            </modules>
-        </profile>
-        <profile>
-            <id>oracle</id>
-            <modules>
-                <module>plugins/daytrader-oracle-datasource</module>
-            </modules>
-        </profile>
+<!--         <profile> -->
+<!--             <id>db2</id> -->
+<!--             <modules> -->
+<!--                 <module>plugins/daytrader-db2-datasource</module> -->
+<!--             </modules> -->
+<!--         </profile> -->
+<!--         <profile> -->
+<!--             <id>oracle</id> -->
+<!--             <modules> -->
+<!--                 <module>plugins/daytrader-oracle-datasource</module> -->
+<!--             </modules> -->
+<!--         </profile> -->
         <profile>
             <id>mysql</id>
             <activation>
@@ -419,21 +406,21 @@
             </activation>
             <modules>
                <module>javaee6</module>  
-               <module>plugins</module> 
+<!--                <module>plugins</module>  -->
             </modules>
         </profile>
-        <profile>
-            <id>informix</id>
-            <modules>
-                <module>plugins/daytrader-informix-datasource</module>
-            </modules>
-        </profile>
-        <profile>
-            <id>sqlserver</id>
-            <modules>
-                <module>plugins/daytrader-sqlserver-datasource</module>
-            </modules>
-        </profile>    
+<!--         <profile> -->
+<!--             <id>informix</id> -->
+<!--             <modules> -->
+<!--                 <module>plugins/daytrader-informix-datasource</module> -->
+<!--             </modules> -->
+<!--         </profile> -->
+<!--         <profile> -->
+<!--             <id>sqlserver</id> -->
+<!--             <modules> -->
+<!--                 <module>plugins/daytrader-sqlserver-datasource</module> -->
+<!--             </modules> -->
+<!--         </profile>     -->
         <profile>
             <id>postgre</id>
             <modules>

@@ -45,7 +45,8 @@ public class PingServlet2Entity extends HttpServlet {
 
     private static int hitCount;
     
-    private @EJB QuoteDataBean quote;
+//    private @EJB QuoteDataBean quote;
+    private QuoteDataBean quote;
 
     @PersistenceContext(unitName = "daytrader")
     private EntityManager em;

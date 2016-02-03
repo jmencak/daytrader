@@ -56,16 +56,20 @@ import javax.transaction.RollbackException;
 @TransactionManagement(TransactionManagementType.CONTAINER)
 public class TradeSLSBBean implements TradeSLSBRemote, TradeSLSBLocal {
 
-    @Resource(name = "jms/QueueConnectionFactory")
+//    @Resource(name = "jms/QueueConnectionFactory")
+	@Resource(mappedName = "java:/JmsXA")
     private QueueConnectionFactory queueConnectionFactory;
 
-    @Resource(name = "jms/TopicConnectionFactory")
+//    @Resource(name = "jms/TopicConnectionFactory")
+	@Resource(mappedName = "java:/JmsXA")
     private TopicConnectionFactory topicConnectionFactory;
 
-    @Resource(name = "jms/TradeStreamerTopic")
+//    @Resource(name = "jms/TradeStreamerTopic")
+    @Resource(name = "java:/jms/queue/TradeStreamerTopic")
     private Topic tradeStreamerTopic;
 
-    @Resource(name = "jms/TradeBrokerQueue")
+//    @Resource(name = "jms/TradeBrokerQueue")
+    @Resource(name = "java:/jms/queue/TradeBrokerQueue")
     private Queue tradeBrokerQueue;
 
     @PersistenceContext(unitName = "daytrader")

@@ -19,38 +19,48 @@ from the dayTrader root directory (the directory containing this README):
 -------------
 |  INSTALL  |
 -------------
-1. Install proper JDBC driver jars into Geronimo before deployment. For example, to run daytrader with IBM DB2, 
-   you need to install DB2 JDBC driver via admin console repository portlet, and name it as following:
-    
-    <groupId>com.ibm.db2</groupId>
-    <artifactId>db2jcc</artifactId>
-    <version>8.2</version>
-    <type>jar</type>
-    
-    <groupId>com.ibm.db2</groupId>
-    <artifactId>db2jcc_license_cu</artifactId>
-    <version>8.2</version>
-    <type>jar</type>
-    
-2. Deploy daytrader to the server:
-   a. Via command line, execute these commands from a command prompt:
-         $ cd $GERONIMO_HOME/bin
-         $ deploy.[bat|sh] deploy $DAYTRADER_HOME/javaee6/assemblies/daytrader-ear/target/daytrader-ear-<version>.ear $DAYTRADER_HOME/javaee6/plans/target/classes/<My plan>
-           - where <My plan> is
-               For Apache Derby:  daytrader-derby-xa-plan.xml
-               For IBM DB2:       daytrader-db2-xa-plan.xml
-               For Oracle:        daytrader-oracle-xa-plan.xml
-               For MySQL:         daytrader-mysql-xa-plan.xml
-               For Informix:      daytrader-informix-xa-plan.xml
-               For MS SQL Server: daytrader-informix-xa-plan.xml or daytrader-sqlserver-plan.xml
-               For Postgre:       daytrader-postgre-xa-plan.xml
+1. Install a local PostgreSQL server and create a database
+	Database: daytrader
+	User: daytrader
+	Password: daytrader
+	
+2. Download and unpack JBoss EAP 6.4
 
-   b. Via admin console, use the admin console to install the application:
-     - Under Applications -> Deploy new
-     I. Select the EAR file indicated above as your archive.
-     II. Select the XML file indicated above as your plan.
-     III. Ensure the checkbox is selected to "start app after install".
+3. Start JBoss EAP with full profile:
 
+	JBOSS_HOME/bin/standalone.sh -c standalone-full.xml
+	
+4. Download PostgreSQL JDBC drivers:
+
+	http://search.maven.org/remotecontent?filepath=org/postgresql/postgresql/9.4-1206-jdbc41/postgresql-9.4-1206-jdbc41.jar
+	
+5. Start JBoss EAP CLI:
+
+	JBOSS_HOME/bin/jboss-cli.sh
+	
+6. Install PostgreSQL JDBC Driver on JBoss EAP:
+
+	module add --name=org.postgresql --resources=/path/to/postgresql-9.4-1206-jdbc41.jar --dependencies=javax.api,javax.transaction.api
+	
+7. Add a JDBC driver definition to JBoss EAP:
+
+	connect
+	/subsystem=datasources/jdbc-driver=postgresql:add(driver-name=postgresql,driver-module-name=org.postgresql,driver-xa-datasource-class-name=org.postgresql.Driver)
+ 
+8. Define required JMS destinations by adding the following snippet in the "messaging" subsystem:
+
+    <jms-destinations>
+        <jms-queue name="TradeBrokerQueue">
+            <entry name="java:/jms/queue/TradeBrokerQueue"/>
+        </jms-queue>
+        <jms-topic name="TradeStreamerTopic">
+            <entry name="java:/jms/topic/TradeStreamerTopic"/>
+        </jms-topic>
+
+        ...
+    </jms-destinations>
+    
+9. Copy PROJECT/javaee6/assemblies/daytrader-ear/target/daytrader-ear-3.0.16-SNAPSHOT.ear into JBOSS_HOME/standalone/deployments
 
 ---------
 |  RUN  |
