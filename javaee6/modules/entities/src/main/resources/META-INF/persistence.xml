@@ -18,9 +18,8 @@
 <persistence xmlns="http://java.sun.com/xml/ns/persistence" version="1.0">
 
     <persistence-unit transaction-type="JTA" name="daytrader">
-<!--         <provider>org.apache.openjpa.persistence.PersistenceProviderImpl</provider> -->
         <jta-data-source>java:jboss/datasources/TradeDataSource</jta-data-source>  
-        <non-jta-data-source>java:jboss/datasources/NoTxTradeDataSource</non-jta-data-source> 
+<!--         <non-jta-data-source>java:jboss/datasources/NoTxTradeDataSource</non-jta-data-source>  -->
         
         <class>org.apache.geronimo.daytrader.javaee6.entities.AccountDataBean</class>
         <class>org.apache.geronimo.daytrader.javaee6.entities.AccountProfileDataBean</class>
