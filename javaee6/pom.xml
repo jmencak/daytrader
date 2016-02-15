@@ -33,6 +33,6 @@
   <modules>
     <module>modules</module>
     <module>assemblies</module>
-    <module>plans</module>
+<!--     <module>plans</module> -->
   </modules>
 </project>
